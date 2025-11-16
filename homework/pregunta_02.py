@@ -15,20 +15,15 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
-    ruta = r"C:\Users\ASUS\OneDrive\Documents\GitHub\David_Descriptiva\LAB-01-programacion-basica-en-python-DavidMontoya06\files\input\data.csv"
-    conteo = {}
-    
-    with open(ruta, "r", encoding="utf-8") as f:
-        for linea in f:
-            columnas = linea.strip().split()  # Dividir por espacios
-            letra = columnas[0]  # Primera columna
-            conteo[letra] = conteo.get(letra, 0) + 1
-    
-    # Ordenar alfabéticamente y convertir a lista de tuplas
-    resultado = sorted(conteo.items())
-    return resultado
+    with open("files/input/data.csv", "r", encoding="utf-8") as file:
+        data = {}
+        for line in file:
+            parts = line.strip().split("\t")
+            key = parts[0]
+            if key not in data:
+                data[key] = 1  # Initialize count
+            else:
+                data[key] += 1  # Increment count
 
-
-if __name__ == "__main__":
-    resultado = pregunta_02()
-    print(resultado)
+        result = sorted(data.items())
+    return result
